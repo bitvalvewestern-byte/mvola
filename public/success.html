@@ -4,16 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demande Reçue – PrêtRapide</title>
-    <link rel="stylesheet" href="common.css">
+    <title>Succès - QuickCash</title>
     <style>
-         :root {
-            --primary: #f47312;
-            --secondary: #004a99;
-            --text: #1a1a2e;
-            --text-muted: #6b7280;
-        }
-        
+        @import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&display=swap');
         * {
             box-sizing: border-box;
             margin: 0;
@@ -21,267 +14,372 @@
         }
         
         body {
-            background: linear-gradient(160deg, #f4f6fb 0%, #dbeafe 100%);
-            min-height: 100vh;
+            font-family: 'Albert Sans', sans-serif;
+            background: linear-gradient(135deg, #003366 0%, #00509e 100%);
+            color: #333;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 24px;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            min-height: 100vh;
+            padding: 20px;
         }
         
-        body.fade-out {
-            opacity: 0;
-            transform: translateY(-12px);
-        }
-        
-        .card {
-            background: white;
-            border-radius: 28px;
-            padding: 44px 32px 36px;
-            max-width: 400px;
+        .success-container {
             width: 100%;
+            max-width: 420px;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px 30px;
             text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.10);
-            animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out;
         }
         
-        @keyframes popIn {
+        @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: scale(0.85) translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-        /* Icône horloge animée */
-        
-        .status-icon {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(135deg, #fff7ed, #fed7aa);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 44px;
-            margin: 0 auto 24px;
-            animation: bobble 3s ease-in-out infinite;
-        }
-        
-        @keyframes bobble {
-            0%,
-            100% {
                 transform: translateY(0);
             }
-            50% {
-                transform: translateY(-6px);
+        }
+        /* Decorative top accent */
+        
+        .success-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(to right, #FCD116, #f4d03f, #FCD116);
+        }
+        /* Success Icon */
+        
+        .success-icon-wrapper {
+            width: 90px;
+            height: 90px;
+            background-color: #e6f7ee;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 25px auto;
+            position: relative;
+            animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s both;
+        }
+        
+        @keyframes popIn {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
             }
         }
         
-        .brand-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 20px;
+        .success-icon-wrapper svg {
+            width: 45px;
+            height: 45px;
+            stroke: #28a745;
+            stroke-width: 3.5;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
+        /* Ripple effect rings */
         
-        .brand-row .dot {
-            width: 28px;
-            height: 28px;
-            background: #f47312;
+        .ripple {
+            position: absolute;
+            border: 2px solid rgba(40, 167, 69, 0.2);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
-            font-size: 14px;
-            color: white;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            animation: ripple 2s infinite ease-out;
         }
         
-        .brand-row span {
-            font-size: 15px;
-            font-weight: 700;
-            color: var(--text-muted);
+        .ripple:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+        
+        @keyframes ripple {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(2.2);
+                opacity: 0;
+            }
         }
         
         h1 {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
-            color: var(--text);
-            letter-spacing: -0.5px;
-            margin-bottom: 12px;
+            color: #003366;
+            margin-bottom: 10px;
         }
         
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: #fff7ed;
-            color: #c2410c;
-            font-size: 13px;
-            font-weight: 700;
-            padding: 6px 16px;
-            border-radius: 99px;
-            border: 1px solid #fed7aa;
-            margin-bottom: 20px;
+        .subtitle {
+            font-size: 15px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 30px;
+            padding: 0 10px;
         }
+        /* Summary Box */
         
-        .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: #f47312;
-            border-radius: 50%;
-            animation: pulseDot 1.4s ease-in-out infinite;
-        }
-        
-        @keyframes pulseDot {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.5);
-                opacity: 0.5;
-            }
-        }
-        
-        p {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.65;
-            margin-bottom: 16px;
-        }
-        
-        .steps-list {
-            list-style: none;
+        .summary-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 14px;
+            padding: 20px;
             text-align: left;
-            margin: 20px 0 28px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+            margin-bottom: 30px;
         }
         
-        .steps-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
+        .summary-box h3 {
             font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.45;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 600;
         }
         
-        .step-num {
-            width: 24px;
-            height: 24px;
-            background: #eef4fb;
-            color: var(--secondary);
-            border-radius: 50%;
+        .summary-row {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 11px;
-            font-weight: 800;
-            flex-shrink: 0;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #e0e0e0;
+            font-size: 15px;
         }
         
-        .divider {
-            border: none;
-            border-top: 1px solid #f1f1f1;
-            margin: 0 0 24px;
+        .summary-row:last-child {
+            border-bottom: none;
         }
         
-        .home-btn {
+        .summary-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .summary-value {
+            color: #003366;
+            font-weight: 700;
+            text-align: right;
+            max-width: 60%;
+            word-break: break-word;
+        }
+        /* Action Buttons */
+        
+        .btn-primary {
             display: block;
             width: 100%;
+            background-color: #003366;
+            color: #ffffff;
             padding: 16px;
-            background: linear-gradient(135deg, #f47312, #d45f00);
-            color: white;
+            border-radius: 50px;
             text-decoration: none;
-            border-radius: 13px;
-            font-weight: 700;
             font-size: 16px;
-            letter-spacing: 0.2px;
-            box-shadow: 0 4px 18px rgba(244, 115, 18, 0.35);
-            transition: transform 0.15s;
-            cursor: pointer;
+            font-weight: 700;
+            transition: background-color 0.2s, transform 0.2s;
+            margin-bottom: 15px;
             border: none;
+            cursor: pointer;
+            font-family: 'Albert Sans', sans-serif;
         }
         
-        .home-btn:active {
-            transform: scale(0.97);
+        .btn-primary:hover {
+            background-color: #002244;
+            transform: translateY(-2px);
         }
         
-        .ref-num {
-            margin-top: 16px;
-            font-size: 12px;
-            color: #c0c0c0;
+        .btn-secondary {
+            display: block;
+            width: 100%;
+            background-color: transparent;
+            color: #003366;
+            padding: 16px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            border: 2px solid #e0e0e0;
+            transition: border-color 0.2s, background-color 0.2s;
+            cursor: pointer;
+            font-family: 'Albert Sans', sans-serif;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #003366;
+            background-color: #f0f4f8;
+        }
+        /* Confetti particles */
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #FCD116;
+            opacity: 0.8;
+            top: -10px;
+            border-radius: 2px;
+            animation: fall 3s linear infinite;
+        }
+        
+        .confetti:nth-child(2) {
+            left: 20%;
+            animation-delay: 0s;
+            background-color: #4A90E2;
+        }
+        
+        .confetti:nth-child(3) {
+            left: 50%;
+            animation-delay: 0.5s;
+            background-color: #28a745;
+        }
+        
+        .confetti:nth-child(4) {
+            left: 80%;
+            animation-delay: 1s;
+            background-color: #FCD116;
+        }
+        
+        .confetti:nth-child(5) {
+            left: 10%;
+            animation-delay: 1.5s;
+            background-color: #d21034;
+        }
+        
+        .confetti:nth-child(6) {
+            left: 90%;
+            animation-delay: 2s;
+            background-color: #4A90E2;
+        }
+        
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(600px) rotate(720deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="card">
-        <div class="brand-row">
-            <div class="dot">B</div>
-            <span>PrêtRapide</span>
+
+    <div class="success-container">
+        <!-- Confetti Particles -->
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+
+        <!-- Success Icon -->
+        <div class="success-icon-wrapper">
+            <div class="ripple"></div>
+            <div class="ripple"></div>
+            <svg viewBox="0 0 24 24">
+                <path d="M20 6L9 17l-5-5" />
+            </svg>
         </div>
 
-        <div class="status-icon">⏳</div>
-
-        <h1>Demande soumise !</h1>
-
-        <div class="status-badge">
-            <div class="pulse-dot"></div>
-            En attente d'approbation
-        </div>
-
-        <p>
-            Votre demande a été reçue et est actuellement en cours d'examen par notre équipe de vérification. Vous serez notifié(e) sous 24 heures dès qu'une décision sera prise.
+        <!-- Messages -->
+        <h1>Félicitations !</h1>
+        <p class="subtitle">
+            Votre demande de prêt a été approuvée avec succès. Voici un récapitulatif de votre dossier.
         </p>
 
-        <hr class="divider">
+        <!-- Summary Box -->
+        <div class="summary-box">
+            <h3>Récapitulatif du Prêt</h3>
+            <div class="summary-row">
+                <span class="summary-label">Nom Complet:</span>
+                <span class="summary-value" id="finalName">-</span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Téléphone:</span>
+                <span class="summary-value" id="finalPhone">-</span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Montant Approuvé:</span>
+                <span class="summary-value" id="finalAmount">-</span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Motif:</span>
+                <span class="summary-value" id="finalPurpose">-</span>
+            </div>
+        </div>
 
-        <ul class="steps-list">
-            <li>
-                <div class="step-num">1</div>
-                <span><strong>Demande soumise</strong> — Vos informations ont bien été enregistrées.</span>
-            </li>
-            <li>
-                <div class="step-num">2</div>
-                <span><strong>Vérification en cours</strong> — Notre équipe commencera l'examen de votre demande dès que 15 % du montant demandé sera déposé sur votre compte Moove, sous 24 heures.</span>
-            </li>
-            <li>
-                <div class="step-num">3</div>
-                <span><strong>Décision finale</strong> — Vous serez contacté(e) par SMS ou e-mail.</span>
-            </li>
-        </ul>
+        <!-- Action Buttons -->
+        <button class="btn-primary" onclick="goToDashboard()">Accéder à mon Espace</button>
+        <a href="index.html" class="btn-secondary">Retour à l'accueil</a>
 
-        <button onclick="transitionTo('calculator.html', 400)" class="home-btn">
-            Retour à l'accueil
-        </button>
-
-        <div class="ref-num" id="refNum">Réf : —</div>
     </div>
 
+    <!-- Script to populate data and handle actions -->
     <script>
-        // ── Transition de page en douceur ──
-        function transitionTo(url, duration) {
-            duration = duration || 400;
-            document.body.classList.add('fade-out');
-            setTimeout(function() {
-                window.location.href = url;
-            }, duration);
+        // --- 1. Retrieve and Display Data ---
+        const savedData = localStorage.getItem('loanApplication');
+
+        if (savedData) {
+            const data = JSON.parse(savedData);
+
+            // Populate Name
+            document.getElementById('finalName').textContent = data.fullName || 'Non spécifié';
+
+            // Populate Phone
+            const phone = data.phone ? `+261 ${data.phone}` : 'Non spécifié';
+            document.getElementById('finalPhone').textContent = phone;
+
+            // Populate Amount
+            const amount = data.amount ? parseInt(data.amount).toLocaleString('fr-FR') + ' Ar' : 'Non spécifié';
+            document.getElementById('finalAmount').textContent = amount;
+
+            // Populate Purpose
+            const purposeMap = {
+                'business': 'Business / Commerce',
+                'education': 'Éducation / Scolarité',
+                'medical': 'Frais Médicaux',
+                'agriculture': 'Agriculture',
+                'personal': 'Dépenses Personnelles',
+                'other': 'Autre'
+            };
+            document.getElementById('finalPurpose').textContent = purposeMap[data.purpose] || data.purpose || 'Non spécifié';
+        } else {
+            // Fallback if no data is found
+            document.getElementById('finalName').textContent = 'Client';
+            document.getElementById('finalPhone').textContent = 'Non spécifié';
+            document.getElementById('finalAmount').textContent = 'Non spécifié';
+            document.getElementById('finalPurpose').textContent = 'Non spécifié';
         }
 
-        // Générer un numéro de référence aléatoire pour soigner l'expérience utilisateur
-        const ref = 'BF-' + Date.now().toString(36).toUpperCase().slice(-6);
-        document.getElementById('refNum').textContent = 'Réf : ' + ref;
+        // --- 2. Handle Dashboard Button ---
+        function goToDashboard() {
+            // Clear the application data since it's been processed
+            // localStorage.removeItem('loanApplication');
+            // localStorage.removeItem('userPhone');
+            // localStorage.removeItem('enteredOTP');
+
+            // In a real app, this would go to a dashboard. For now, redirect to index.
+            window.location.href = "index.html";
+        }
     </script>
+
 </body>
 
 </html>
